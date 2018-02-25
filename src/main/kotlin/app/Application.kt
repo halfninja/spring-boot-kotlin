@@ -1,24 +1,31 @@
-package hello
+package app
 
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
+@ComponentScan("app")
 class Application {
 
 	private val log = LoggerFactory.getLogger(Application::class.java)
 
 	@Bean
+	fun ktViewResolver(factory: AutowireCapableBeanFactory) = KtViewResolver(factory)
+
+	@Bean
 	fun init(repository: CustomerRepository) = CommandLineRunner {
+
 			// save a couple of customers
-			repository.save(Customer("Jack", "Bauer"))
-			repository.save(Customer("Chloe", "O'Brian"))
+			repository.save(Customer("Simon", "DeHavilland"))
+			repository.save(Customer("Chloe", "Palmer"))
 			repository.save(Customer("Kim", "Bauer"))
-			repository.save(Customer("David", "Palmer"))
-			repository.save(Customer("Michelle", "Dessler"))
+			repository.save(Customer("Paul", "Simon"))
+			repository.save(Customer("Michelle", "Degaussie"))
 
 			// fetch all customers
 			log.info("Customers found with findAll():")

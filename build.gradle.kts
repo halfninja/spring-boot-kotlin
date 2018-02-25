@@ -37,21 +37,25 @@ tasks {
 }
 
 repositories {
+	jcenter()
 	mavenCentral()
 	maven("http://repo.spring.io/milestone")
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web")
-	compile("org.springframework.boot:spring-boot-starter-data-jpa")
-	compile("com.h2database:h2")
-	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compile("org.jetbrains.kotlin:kotlin-reflect")
-	compile("com.fasterxml.jackson.module:jackson-module-kotlin")
-	testCompile("org.springframework.boot:spring-boot-starter-test") {
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-devtools")
+	implementation("com.h2database:h2")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.8")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("javax.xml.bind:jaxb-api:2.3.0")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(module = "junit")
 	}
-	testCompile("org.junit.jupiter:junit-jupiter-api")
+	testImplementation("org.junit.jupiter:junit-jupiter-api")
 	testRuntime("org.junit.jupiter:junit-jupiter-engine")
 }
 
